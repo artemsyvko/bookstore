@@ -33,3 +33,12 @@ JOIN
 JOIN
     reviewers AS re ON ra.reviewer_id = re.id
     ;
+
+CREATE VIEW matched_reviewers AS
+SELECT DISTINCT r1.reviewer AS name1, r2.reviewer AS name2
+FROM book_reviewer_rating AS r1
+JOIN
+	book_reviewer_rating AS r2 ON r1.id = r2.id
+WHERE r1.reviewer_id != r2.reviewer_id
+ORDER BY r1.reviewer
+	;
